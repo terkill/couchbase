@@ -20,6 +20,7 @@ class Chef
           @current_resource.memory_quota_mb bucket_memory_quota_mb
           @current_resource.replicas bucket_replicas
           @current_resource.proxyport proxyport
+          @current_resource.threads_number bucket_threads_number
         end
       end
 
@@ -54,6 +55,7 @@ class Chef
           "ramQuotaMB" => new_memory_quota_mb,
           "proxyPort" => new_resource.proxyport,
           "replicaNumber" => new_resource.replicas || 0,
+          "threadsNumber" => new_treads_number
         }
       end
 
@@ -71,6 +73,10 @@ class Chef
         new_resource.memory_quota_mb || (new_resource.memory_quota_percent * pool_memory_quota_mb).to_i
       end
 
+      def new_threads_number
+        new_resource.threads_number || new_resource.disk_io_priority == 'high' ? 8 : 3
+      end
+
       def bucket_memory_quota_mb
         (bucket_data["quota"]["rawRAM"] / 1024 / 1024).to_i
       end
@@ -81,6 +87,10 @@ class Chef
 
       def proxyport
         bucket_data["proxyPort"]
+      end
+
+      def bucket_threads_number
+        bucket_data['threadsNumber']
       end
 
       def bucket_type

@@ -51,6 +51,18 @@ class Chef
         set_or_return(:saslpassword, arg, :kind_of => String, :default => "")
       end
 
+      def disk_io_proirity(arg=nil) {
+        set_or_return(:disk_io_proirity, arg, :kind_of => String, :default => 'low', :callbacks => {
+            'must be either low or high' => lambda { |type| %w(low high).include? type }
+        })
+      }
+
+      def threads_number(arg=nil) {
+        set_or_return(:treads_number, arg, :kind_of => Integer, :callbacks => {
+            "must be at least 1" => lambda { |threads| threads >= 1 }
+        })
+      }
+
       def initialize(*)
         super
         @action = :create

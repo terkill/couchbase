@@ -26,8 +26,8 @@ describe_recipe "couchbase::server" do
     end
 
     it "is owned by couchbase" do
-      log_dir.with :owner, "couchbase"
-      log_dir.with :group, "couchbase"
+      log_dir.with :owner, node['couchbase']['server']['owner']
+      log_dir.with :group, node['couchbase']['server']['group']
     end
   end
 
@@ -48,8 +48,8 @@ describe_recipe "couchbase::server" do
     end
 
     it "is owned by couchbase" do
-      database_dir.with :owner, "couchbase"
-      database_dir.with :group, "couchbase"
+      log_dir.with :owner, node['couchbase']['server']['owner']
+      log_dir.with :group, node['couchbase']['server']['group']
     end
   end
 
@@ -61,8 +61,8 @@ describe_recipe "couchbase::server" do
     end
 
     it "is owned by couchbase" do
-      index_dir.with :owner, "couchbase"
-      index_dir.with :group, "couchbase"
+      log_dir.with :owner, node['couchbase']['server']['owner']
+      log_dir.with :group, node['couchbase']['server']['group']
     end
   end
 

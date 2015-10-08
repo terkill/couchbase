@@ -93,8 +93,8 @@ ruby_block "block_until_operational" do
 end
 
 directory node['couchbase']['server']['log_dir'] do
-  owner "couchbase"
-  group "couchbase"
+  owner node['couchbase']['server']['owner']
+  group node['couchbase']['server']['group']
   mode 0755
   recursive true
 end
@@ -114,15 +114,15 @@ ruby_block "rewrite_couchbase_log_dir_config" do
 end
 
 directory node['couchbase']['server']['database_path'] do
-  owner "couchbase"
-  group "couchbase"
+  owner node['couchbase']['server']['owner']
+  group node['couchbase']['server']['group']
   mode 0755
   recursive true
 end
 
 directory node['couchbase']['server']['index_path'] do
-  owner "couchbase"
-  group "couchbase"
+  owner node['couchbase']['server']['owner']
+  group node['couchbase']['server']['group']
   mode 0755
   recursive true
 end

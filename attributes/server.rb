@@ -64,9 +64,13 @@ case node['platform_family']
   when "windows"
   default['couchbase']['server']['service_name'] = "CouchbaseServer"
   default['couchbase']['server']['install_dir'] = File.join("C:","Program Files","Couchbase","Server")
+  default['couchbase']['server']['owner'] = 'System'
+  default['couchbase']['server']['group'] = 'Administrators'
   else
   default['couchbase']['server']['service_name'] = "couchbase-server"
   default['couchbase']['server']['install_dir'] = "/opt/couchbase"
+  default['couchbase']['server']['owner'] = 'couchbase'
+  default['couchbase']['server']['group'] = 'couchbase'
 end
 
 default['couchbase']['server']['database_path'] = File.join(node['couchbase']['server']['install_dir'],"var","lib","couchbase","data")

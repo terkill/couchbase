@@ -21,6 +21,7 @@ class Chef
           @current_resource.replicas bucket_replicas
           @current_resource.proxyport proxyport
           @current_resource.threads_number bucket_threads_number
+          @current_resource.evictien_policy bucket_evictien_policy
         end
       end
 
@@ -55,7 +56,8 @@ class Chef
           "ramQuotaMB" => new_memory_quota_mb,
           "proxyPort" => new_resource.proxyport,
           "replicaNumber" => new_resource.replicas || 0,
-          "threadsNumber" => new_treads_number
+          "evictionPolicy" => new_resource.metadata_ejection,
+          "threadsNumber" => new_threads_number
         }
       end
 
@@ -91,6 +93,10 @@ class Chef
 
       def bucket_threads_number
         bucket_data['threadsNumber']
+      end
+
+      def bucket_evictien_policy
+        bucket_data['evictionPolicy']
       end
 
       def bucket_type

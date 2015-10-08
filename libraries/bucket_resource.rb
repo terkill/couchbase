@@ -63,6 +63,12 @@ class Chef
         })
       }
 
+      def metadata_ejection(arg=nil) {
+        set_or_return(:metadata_ejection, arg, :kind_of => String, :default => 'value', :callbacks => {
+            'must be either value or full' => lamba { |type| %w(value full).include? type }
+        })
+      }
+
       def initialize(*)
         super
         @action = :create

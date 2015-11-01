@@ -51,23 +51,23 @@ class Chef
         set_or_return(:saslpassword, arg, :kind_of => String, :default => "")
       end
 
-      def disk_io_proirity(arg=nil) {
-        set_or_return(:disk_io_proirity, arg, :kind_of => String, :default => 'low', :callbacks => {
-            'must be either low or high' => lambda { |type| %w(low high).include? type }
+      def disk_io_priority(arg=nil)
+        set_or_return(:disk_io_priority, arg, :kind_of => String, :default => 'low', :callbacks => {
+            'must be either low or high' => lambda { |type| %w(low high).include? type },
         })
-      }
+      end
 
-      def threads_number(arg=nil) {
+      def threads_number(arg=nil)
         set_or_return(:treads_number, arg, :kind_of => Integer, :callbacks => {
-            "must be at least 1" => lambda { |threads| threads >= 1 }
+            "must be at least 1" => lambda { |threads| threads >= 1 },
         })
-      }
+      end
 
-      def metadata_ejection(arg=nil) {
+      def metadata_ejection(arg=nil)
         set_or_return(:metadata_ejection, arg, :kind_of => String, :default => 'value', :callbacks => {
-            'must be either value or full' => lamba { |type| %w(value full).include? type }
+            'must be either value or full' => lambda { |type| %w(value full).include? type },
         })
-      }
+      end
 
       def initialize(*)
         super

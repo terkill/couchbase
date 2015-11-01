@@ -64,8 +64,8 @@ class Chef
       end
 
       def metadata_ejection(arg=nil)
-        set_or_return(:metadata_ejection, arg, :kind_of => String, :default => 'value', :callbacks => {
-            'must be either value or full' => lambda { |type| %w(value full).include? type },
+        set_or_return(:metadata_ejection, arg, :kind_of => String, :default => 'valueOnly', :callbacks => {
+            'must be either valueOnly or fullEviction' => lambda { |type| %w(valueOnly fullEviction).include? type },
         })
       end
 

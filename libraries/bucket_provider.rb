@@ -21,7 +21,7 @@ class Chef
           @current_resource.replicas bucket_replicas
           @current_resource.proxyport proxyport
           @current_resource.threads_number bucket_threads_number
-          @current_resource.metadata_eviction bucket_eviction_policy
+          @current_resource.metadata_ejection bucket_eviction_policy
         end
       end
 

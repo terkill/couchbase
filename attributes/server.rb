@@ -51,7 +51,11 @@ when "windows"
     Chef::Log.error("Couchbase Server on Windows must be installed on a 64-bit machine")
   else
     default['couchbase']['server']['version'] = "3.0.0-beta"
-    default['couchbase']['server']['package_file'] = "couchbase-server-#{node['couchbase']['server']['edition']}_#{node['couchbase']['server']['version']}-windows_amd64.exe"
+    if node['couchbase']['server']['edition'] and '' != node['couchbase']['server']['edition']
+      default['couchbase']['server']['package_file'] = "couchbase-server-#{node['couchbase']['server']['edition']}_#{node['couchbase']['server']['version']}-windows_amd64.exe"
+    else
+      default['couchbase']['server']['package_file'] = "couchbase-server_#{node['couchbase']['server']['version']}-windows_amd64.exe"
+    end
   end
 else
   Chef::Log.error("Couchbase Server is not supported on #{node['platform_family']}")

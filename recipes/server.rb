@@ -110,7 +110,7 @@ ruby_block "rewrite_couchbase_log_dir_config" do
   end
 
   notifies :restart, "service[#{node['couchbase']['server']['service_name']}]"
-  not_if "grep '#{log_dir_line}' #{static_config_file}" # XXX won't work on Windows, no 'grep'
+  not_if do ::File.readlines(static_config_file).grep(/#{log_dir_line}/).size > 0 end
 end
 
 directory node['couchbase']['server']['database_path'] do
